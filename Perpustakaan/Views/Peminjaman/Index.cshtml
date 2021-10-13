@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Perpustakaan.Models.IPeminjaman>
+
+
+@{
+    ViewData["Title"] = "Peminajamn Buku";
+}
+
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h4 class="page-header-title">
+                        Data Peminjaman Buku
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="card mb-4">
+    <div class="card-header">Peminjaman Buku</div>
+    <div class="card-body p-0">
+        <!-- Billing history table-->
+        <div class="table-responsive table-billing-history">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th class="border-gray-200" scope="col">No.</th>
+                        <th class="border-gray-200" scope="col">Nama Peminjam</th>
+                        <th class="border-gray-200" scope="col">Judul Buku</th>
+                        <th class="border-gray-200" scope="col">Status Pengembalian</th>
+                        <th><a asp-action="Add" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Tambah</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        @*@{
+                            var Keterangan = Model.Peminjaman.IsPengembalian == "0" ? "Belum Kembali" : "Sudah Kembali";
+                        }*@
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.Peminjaman.IdPeminjaman)
+                            </td>
+                            <td>
+                                @item.Peminjaman.NamaPeminjam
+                            </td>
+                            <td>
+                                @item.Buku.Judul
+                            </td>
+                            <td>
+                                @item.Peminjaman.IsPengembalian
+                            </td>
+                            <td>
+                                <a asp-action="Detail" asp-route-id="@item.Peminjaman.IdPeminjaman"><i class="fa fa-eye fa-lg"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Peminjaman.IdPeminjaman" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

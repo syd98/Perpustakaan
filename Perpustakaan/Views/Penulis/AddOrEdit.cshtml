@@ -1,0 +1,76 @@
+﻿@model Perpustakaan.Models.Penulis
+
+@{ ViewData["Title"] = "Create"; }
+
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h4 class="page-header-title">
+                        Form Data Penulis
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-4">
+    <div class="row">
+
+
+        <div class="col-xl-8">
+            <!-- Account details card-->
+
+            <div class="card mb-4">
+                <div class="card-header">Form Tambah Data Penulis</div>
+                <div class="card-body">
+                    <form asp-action="AddOrEdit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="@Model.IdPenulis" />
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <div class="form-group col-md-12">
+                                <label asp-for="@Model.Nama" class="small mb-1">Nama Penulis</label>
+                                <input asp-for="@Model.Nama" class="form-control" />
+                                <span asp-validation-for="@Model.Nama" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="form-group col-md-12">
+                                <label asp-for="@Model.Gender" class="small mb-1">Jenis Kelamin</label>
+
+                                <select asp-for="@Model.Gender" name="Gender" class="form-control">
+                                    <option value="">Select Jenis Kelamin</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                </select>
+                                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="form-group col-md-12">
+                                <label asp-for="@Model.NoTelp" class="small mb-1">Nomor Telepon</label>
+                                <input asp-for="@Model.NoTelp" class="form-control" />
+                                <span asp-validation-for="@Model.NoTelp" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="form-group col-md-6">
+                                <input type="submit" value="Submit" class="btn btn-primary col-md-12" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <a asp-action="Index" class="btn btn-secondary col-md-12"><i class="fa fa-table"></i> Back to List</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

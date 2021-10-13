@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Perpustakaan.Models.Penulis>
+
+@{ ViewData["Title"] = "Index"; }
+
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h4 class="page-header-title">
+                        Data Penulis
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="card mb-4">
+    <div class="card-header">Data Penulis</div>
+    <div class="card-body p-0">
+        <!-- Billing history table-->
+        <div class="table-responsive table-billing-history">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th class="border-gray-200" scope="col">No.</th>
+                        <th class="border-gray-200" scope="col">Nama Penulis</th>
+                        <th class="border-gray-400" scope="col">Jenis Kelamin</th>
+                        <th class="border-gray-200" scope="col">Nomor Telepon</th>
+                        <th><a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Tambah</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdPenulis)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nama)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoTelp)
+                        </td>
+                        <td>
+                            <a asp-action="AddOrEdit" asp-route-id="@item.IdPenulis"><i class="fa fa-eye fa-lg"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.IdPenulis" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+                        </td>
+                    </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

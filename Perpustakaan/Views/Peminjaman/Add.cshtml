@@ -1,0 +1,68 @@
+﻿@model Perpustakaan.Models.IPeminjaman
+
+@{
+    ViewData["Title"] = "Form Tambah Data";
+}
+
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h4 class="page-header-title">
+                        Form Tambah Data Peminjaman
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-xl px-4 mt-4">
+    <div class="row">
+
+
+        <div class="col-xl-8">
+            <!-- Account details card-->
+
+            <div class="card mb-4">
+                <div class="card-header">Form Tambah Data Peminjam</div>
+                <div class="card-body">
+                    <form asp-action="Add">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="@Model.Peminjaman.IdPeminjaman" />
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <div class="form-group">
+                                <label asp-for="@Model.Peminjaman.NamaPeminjam" class="small mb-1">Nama Peminjam</label>
+                                <input asp-for="@Model.Peminjaman.NamaPeminjam" class="form-control" />
+                                <span asp-validation-for="@Model.Peminjaman.NamaPeminjam" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                                <div class="form-group">
+                                    <label asp-for="@Model.Peminjaman.IdBuku" class="small mb-1">Buku</label>
+                                    <select id="ddlPenerbit" class="form-control" asp-for="@Model.Peminjaman.IdBuku" asp-items="@Model.Bukus">
+                                        <option value="">Select Judul Buku</option>
+                                    </select>
+                                    <span asp-validation-for="@Model.Peminjaman.IdBuku" class="text-danger"></span>
+                                </div>
+                        </div>
+                            <div class="row gx-3 mb-3">
+                                <div class="form-group col-md-6">
+                                    <input type="submit" value="Submit" class="btn btn-primary col-md-12" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <a asp-action="Index" class="btn btn-secondary col-md-12"><i class="fa fa-table"></i> Back to List</a>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

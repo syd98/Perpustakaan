@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Perpustakaan.Models.IPeminjaman>
+
+
+@{
+    ViewData["Title"] = "Pengembalian Buku";
+}
+<header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+    <div class="container-xl px-4">
+        <div class="page-header-content">
+            <div class="row align-items-center justify-content-between pt-3">
+                <div class="col-auto mb-3">
+                    <h4 class="page-header-title">
+                        Data Pengembalian Buku
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="card mb-4">
+    <div class="card-header">Peminjaman Buku</div>
+    <div class="card-body p-0">
+        <div class="table-responsive table-billing-history">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th class="border-gray-200" scope="col">No.</th>
+                        <th class="border-gray-200" scope="col">Nama Peminjam</th>
+                        <th class="border-gray-200" scope="col">Judul Buku</th>
+                        <th class="border-gray-200" scope="col">Status Pengembalian</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.Peminjaman.IdPeminjaman)
+                        </td>
+                        <td>
+                            @item.Peminjaman.NamaPeminjam
+                        </td>
+                        <td>
+                            @item.Buku.Judul
+                        </td>
+                        <td>
+                            @item.Peminjaman.IsPengembalian
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
